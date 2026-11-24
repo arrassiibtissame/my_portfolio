@@ -55,4 +55,21 @@ if(lb&&lb.showModal){document.querySelectorAll('.shot').forEach(function(b){b.ad
 lb.querySelector('.lb-x').addEventListener('click',function(){lb.close()});
 lb.addEventListener('click',function(e){if(e.target===lb)lb.close()})}
 document.querySelectorAll('.mswitch').forEach(function(g){var sh=g.parentElement.querySelectorAll('.shot'),bs=g.querySelectorAll('button');bs.forEach(function(b,i){b.addEventListener('click',function(){sh.forEach(function(x,k){x.hidden=k!==i});bs.forEach(function(y,k){y.setAttribute('aria-pressed',k===i)})})})});
+
+
+// Subtle transition when navigating between sections
+document.querySelectorAll('#nl a[href^="#"], .hero a[href^="#"]').forEach(function(link) {
+  link.addEventListener('click', function() {
+    var target = document.querySelector(link.getAttribute('href'));
+
+    if (!target || rm) return;
+
+    target.classList.remove('section-transition');
+
+    void target.offsetWidth;
+
+    target.classList.add('section-transition');
+  });
+});
+
 })();
