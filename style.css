@@ -8,7 +8,8 @@ body{margin:0;background:radial-gradient(900px 520px at 78% 6%,var(--glow),trans
 .w{max-width:1120px;margin:0 auto;padding:0 24px}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--acc);outline-offset:3px;border-radius:6px}
-nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;gap:20px}
+nav{display:flex;align-items:center;justify-content:space-between;position: sticky;  top: 0;
+z-index: 1000;padding:20px 0;gap:20px}
 .logo{font-weight:800;font-size:19px;text-decoration:none;display:flex;align-items:center;gap:10px}
 .logo i{font-style:normal;color:var(--acc);font-family:"JetBrains Mono",monospace}
 .nl{display:flex;gap:30px;font-size:14px;font-weight:500}
@@ -229,7 +230,10 @@ button.btn{font:600 14px "Manrope",sans-serif;cursor:pointer}
 .pub b{font:600 10.5px "JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;background:var(--acc);color:var(--onacc);padding:3px 8px;border-radius:4px}
 .skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--acc);color:var(--onacc);padding:10px 16px;border-radius:8px;font-weight:600;text-decoration:none}
 .skip:focus{top:12px}
-nav{position:relative}
+nav{position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--bg);}
 .nl{gap:24px}
 .nav-r{display:flex;align-items:center;gap:10px}
 .menu{display:none;width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:none;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0}
@@ -541,4 +545,310 @@ html::after {
     top: 4%;
     font-size: 8px;
   }
+}
+
+/* Experimental project cards */
+.pj {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.pj::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -75px;
+  right: -75px;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--acc) 13%, transparent),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.pj::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 24px;
+  width: 1px;
+  height: 42px;
+  background: linear-gradient(
+    to bottom,
+    var(--acc),
+    transparent
+  );
+  opacity: 0.65;
+  pointer-events: none;
+}
+
+.pj .top {
+  position: relative;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Experimental experience timeline */
+.tl {
+  position: relative;
+}
+
+.tl::before {
+  content: "CAREER";
+  position: absolute;
+  top: -32px;
+  left: 0;
+  color: var(--acc);
+  font: 500 10px "JetBrains Mono", monospace;
+  letter-spacing: 0.14em;
+}
+
+.job {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.job::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 24px;
+  width: 34px;
+  height: 3px;
+  background: var(--acc);
+  opacity: 0.6;
+}
+
+.job:hover {
+  transform: translateX(5px);
+  border-color: var(--acc);
+  box-shadow: 0 12px 32px var(--glow);
+}
+
+/* Experimental education card */
+.edu {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.edu::before {
+  content: "ACADEMIC";
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  color: var(--acc);
+  font: 500 9px "JetBrains Mono", monospace;
+  letter-spacing: 0.12em;
+  opacity: 0.75;
+}
+
+.edu::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    var(--acc),
+    transparent 85%
+  );
+  opacity: 0.65;
+}
+
+.edu:hover {
+  transform: translateY(-4px);
+  border-color: var(--acc);
+  box-shadow: 0 18px 40px var(--glow);
+}
+
+@media (max-width: 820px) {
+  .edu::before {
+    top: 12px;
+    right: 14px;
+    font-size: 8px;
+  }
+}
+/* Experimental engineering notes — blueprint panel */
+.sdlc {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--line) 35%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--line) 35%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 28px 28px;
+}
+
+.sdlc h3 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sdlc h3::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+  opacity: 0.8;
+}
+
+.nrow {
+  position: relative;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.nrow:hover {
+  transform: translateX(4px);
+  border-color: var(--acc);
+}
+/* Experimental skills — architectural details */
+.tabs {
+  position: relative;
+  border-bottom: 1px solid var(--line);
+}
+
+.tabs button {
+  transition:
+    color 0.25s ease,
+    background 0.25s ease;
+}
+
+.tabs button[aria-selected="true"] {
+  box-shadow: inset 0 -2px 0 var(--acc);
+}
+
+.tpanel {
+  position: relative;
+  overflow: hidden;
+}
+
+.tpanel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 42px;
+  height: 42px;
+  border-top: 1px solid var(--acc);
+  border-right: 1px solid var(--acc);
+  opacity: 0.45;
+  pointer-events: none;
+}
+/* Experimental contact — architectural geometry */
+.cta {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  right: -100px;
+  top: -130px;
+  border: 1px solid rgba(242, 239, 232, 0.2);
+  border-radius: 46% 54% 63% 37% / 42% 38% 62% 58%;
+  transform: rotate(-25deg);
+  box-shadow:
+    0 0 0 24px rgba(242, 239, 232, 0.035),
+    0 0 0 48px rgba(242, 239, 232, 0.025);
+  pointer-events: none;
+}
+
+.cta::after {
+  content: "";
+  position: absolute;
+  right: 36px;
+  bottom: 28px;
+  width: 46px;
+  height: 46px;
+  border-right: 1px solid rgba(242, 239, 232, 0.35);
+  border-bottom: 1px solid rgba(242, 239, 232, 0.35);
+  pointer-events: none;
+}
+
+@media (max-width: 820px) {
+  .cta::before {
+    width: 210px;
+    height: 210px;
+    right: -100px;
+  }
+
+  .cta::after {
+    right: 18px;
+    bottom: 18px;
+  }
+}
+/* Experimental recommendation — editorial layout */
+.pull {
+  position: relative;
+  padding-left: 24px;
+  border-left: 2px solid var(--acc);
+}
+
+.pull::before {
+  content: "“";
+  position: absolute;
+  top: -35px;
+  left: 12px;
+  color: var(--acc);
+  opacity: 0.16;
+  font: 120px/1 "Instrument Serif", serif;
+  pointer-events: none;
+}
+
+.review {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.review::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 65px;
+  height: 65px;
+  border-right: 1px solid var(--acc);
+  border-bottom: 1px solid var(--acc);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.review .stamp {
+  transform: rotate(-7deg);
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--bg);
 }
